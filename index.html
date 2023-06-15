@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https:////cdnjs.cloudflare.com/ajax/libs/phaser/2.0.6/phaser.min.js"></script>
     <meta charset="UTF-8" />
-    <title>
-      Handtrack.js : A library for prototyping realtime handtracking in the
-      browser.
-    </title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/carbon-components@latest/css/carbon-components.css"
@@ -13,12 +10,9 @@
     <link rel="stylesheet" href="css/track.css" />
   </head>
 
-  <body class="bx--body p20">
-    <!-- <img id="img" src="hand.jpg"/>  -->
-    <div class="p20">
-      Handtrack.js allows you prototype handtracking interactions in the browser
-      in 3 lines of code.
-    </div>
+  <body class="">
+    <div id="game"></div>
+    <img id="img" src="hand.jpg" />
     <div class="mb10">
       <button
         id="trackbutton"
@@ -30,7 +24,7 @@
       </button>
       <button
         id="nextimagebutton"
-        class="mt10 bx--btn bx--btn--secondary"
+        class=" bx--btn bx--btn--secondary"
         type="button"
         disabled
       >
