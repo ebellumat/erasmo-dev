@@ -13,8 +13,8 @@ let model = null;
 let positionX = 0;
 let positionY = 0;
 
-// video.width = 500
-// video.height = 400
+// video.width = 1280;
+// video.height = 720;
 
 const modelParams = {
   flipHorizontal: true, // flip e.g for video
@@ -90,6 +90,30 @@ function runDetection() {
   model.detect(video).then(predictions => {
     // console.log("Predictions: ", predictions);
     model.renderPredictions(predictions, canvas, context, video);
+
+    var image = document.getElementById("canvas");
+    image.style.position = "absolute";
+    image.style.left = "50%";
+    image.style.top = "50%";
+    image.style.transform = "translate(-50%, -50%)";
+    image.style.opacity = "0.3"; // Set the opacity to 0.5 for half transparency
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+
+    var aspectRatio = 4 / 3; // Set the desired aspect ratio
+
+    var canvasWidth, canvasHeight;
+    if (windowWidth / windowHeight > aspectRatio) {
+      canvasWidth = windowHeight * aspectRatio;
+      canvasHeight = windowHeight;
+    } else {
+      canvasWidth = windowWidth;
+      canvasHeight = windowWidth / aspectRatio;
+    }
+
+    image.style.width = canvasWidth + "px";
+    image.style.height = canvasHeight + "px";
+
     if (isVideo) {
       requestAnimationFrame(runDetection);
 
@@ -108,13 +132,6 @@ function runDetection() {
 
         positionX = windowX;
         positionY = windowY;
-
-        var image = document.getElementById("canvas");
-
-        image.style.position = "absolute";
-
-        image.style.left = 0 + "px";
-        image.style.top = 0 + "px";
       }
     }
   });
@@ -190,7 +207,7 @@ var fireRate = 1000;
 var nextFire = 0;
 
 function create() {
-  game.stage.backgroundColor = "#aaaaaa";
+  game.stage.backgroundColor = "#ffffff";
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.physics.arcade.gravity.y = 300;
 
@@ -282,7 +299,7 @@ function update() {
 
   slashes.clear();
   slashes.beginFill(0x000099);
-  slashes.alpha = 0.5;
+  slashes.alpha = 1;
   slashes.moveTo(points[0].x, points[0].y);
   for (var i = 1; i < points.length; i++) {
     slashes.lineTo(points[i].x, points[i].y);
